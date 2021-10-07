@@ -1,0 +1,39 @@
+<%= link_to new_usuario_path, :class => "btn btn-success" do %>
+ Nuevo usuario
+<% end %>
+
+<div class="search-right">
+  <%= form_tag usuarios_path, :method => :get do %>
+    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: "Search by Name" %>
+    <%= button_tag type: "submit", class: "btn btn-success" do %>
+    <% end %>
+  <% end %>
+</div>
+
+ 
+
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr align="center">
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Telefono</th>
+      <th scope="col" class="col-actions">Procesos</th>
+    </tr>
+  </thead>
+
+  <tbody align="center">
+    <% @usuarios.each do |usuario| %>
+      <tr>
+        <td><%= usuario.nombre %></td>
+        <td><%= usuario.apellido %></td>
+        <td><%= usuario.telefono %></td>
+        <td>
+          <%= link_to 'Show', usuario, class: 'btn btn-success' %>
+          <%= link_to 'Edit', edit_usuario_path(usuario), class: 'btn btn-primary
+          '%>
+          <%= link_to 'Destroy', usuario, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
